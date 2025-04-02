@@ -11,16 +11,13 @@ use Blog\ArticleRepository;
 
 
 $afficherConfirmation = false;
-$triPossible = ['id', 'titre'];
 
 $idToDelete = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
 $action = nettoyage($_GET['action'] ?? '');
 $titre = nettoyage($_GET['titre'] ?? '');
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-$tri = isset($_POST['boutonTri']) &&   in_array($_POST['boutonTri'], $triPossible, true)  ? nettoyage($_POST['boutonTri']) : 'id';
-
-
+$tri = isset($_POST['boutonTri'])  ? nettoyage($_POST['boutonTri']) : 'id';
 
 
 //liste des articles

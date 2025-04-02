@@ -40,7 +40,10 @@ class ArticleRepository
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
             if (!$bdd) return $result;
-
+            //protection 
+            if (!in_array($tri, ['id', 'titre', 'date'], true)) {
+                $tri = 'id';
+            }
             $sql = "SELECT * FROM " . self::TABLE_NAME . " ORDER BY $tri";
             $stmt = $bdd->prepare($sql);
 

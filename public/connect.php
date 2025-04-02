@@ -9,6 +9,7 @@ use Blog\UserRepository;
 //si l'utilisateur est connecté, on redirige vers son dashboard
 if (isset($_SESSION['nom_user'])) {
     header("location:" . BASE_URL . "/public/admin/gestion.php");
+    exit();
 }
 
 
@@ -24,9 +25,11 @@ if (isset($_POST['buttLogin'])) {
     if (!$user) {
         $message = 'Nom d\'utilisateur ou mot de passe incorrect';
     } else {
+        //si authentification correcte, on stocke son nom et id dans des variables de session et on redirige vers le dashboard
         $_SESSION['nom_user'] =  $user->nom;
         $_SESSION['id_user'] =  $user->id;
         header("location:" . BASE_URL . "/public/admin/gestion.php");
+        exit();
     }
 }
 
